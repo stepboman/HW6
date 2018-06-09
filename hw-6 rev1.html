@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title>HW6</title>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  
+
+</head>
+
+<body>
+
+<button data-search="Arnold Shwarzenegger">Arnold</button> 
+
+<button data-search="Samuel L Jackson">Samual</button>
+
+<div id ="GIFArea"></div>
+
+
+<script type="text/javascript">
+
+$('button').on('click', function(){
+    
+    
+   var x = $(this).data("search") 
+    
+    
+
+    var queryURL =   "http://api.giphy.com/v1/gifs/search?q="+x+"&api_key=BSqzTiNdXEDXeXd7ddllfdHwTnj9CMt7&limit=10";
+    
+   
+
+    console.log(queryURL);
+
+    $.ajax({url: queryURL,method: "GET"
+
+}).done(function(response) { console.log (response);
+
+for(var i=0;i<response.data.length;i++){
+    $('#GIFArea').prepend("<p>Rating: "+response.data[i].rating+"</p>");
+$('#GIFArea').prepend("<img src='" +response.data[i].images.downsized.url+"'>");
+
+}
+
+
+
+
+})
+
+
+})
+
+</script>
+
+</body>
+
+
+
+</html>
+
